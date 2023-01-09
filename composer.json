@@ -31,6 +31,30 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:digital-marketing-framework/core.git",
+            "only": [
+                "digital-marketing-framework/core"
+            ]
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:digital-marketing-framework/distributor-core.git",
+            "only": [
+                "digital-marketing-framework/distributor-core"
+            ]
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:digital-marketing-framework/distributor-request.git",
+            "only": [
+                "digital-marketing-framework/distributor-request"
+            ]
+        }
+    ],
     "require": {
         "php": "^8.1",
         "digital-marketing-framework/distributor-request": "dev-main"
@@ -49,9 +73,9 @@
     "autoload-dev": {
         "psr-4": {
             "DigitalMarketingFramework\\Distributor\\Pardot\\Tests\\": "tests/",
-            "DigitalMarketingFramework\\Distributor\\Request\\Tests": "vendor/digital-marketing-framework/distributor-request/tests",
-            "DigitalMarketingFramework\\Distributor\\Core\\Tests": "vendor/digital-marketing-framework/distributor-core/tests",
-            "DigitalMarketingFramework\\Core\\Tests": "vendor/digital-marketing-framework/core/tests"
+            "DigitalMarketingFramework\\Distributor\\Request\\Tests\\": "vendor/digital-marketing-framework/distributor-request/tests/",
+            "DigitalMarketingFramework\\Distributor\\Core\\Tests\\": "vendor/digital-marketing-framework/distributor-core/tests/",
+            "DigitalMarketingFramework\\Core\\Tests\\": "vendor/digital-marketing-framework/core/tests/"
         }
     }
 }

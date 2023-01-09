@@ -19,7 +19,7 @@ class PardotRoute extends RequestRoute
     {
         $config = parent::getDefaultConfiguration();
         
-        $config[DataProcessorInterface::KEY_FIELDS] = [
+        $config[static::KEY_DATA][DataProcessorInterface::KEY_FIELDS] = [
             'source' => ['field' => 'source'],
     
             'salutation' => ['field' => 'salutation'],
