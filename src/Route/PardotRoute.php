@@ -2,6 +2,9 @@
 
 namespace DigitalMarketingFramework\Distributor\Pardot\Route;
 
+use DigitalMarketingFramework\Core\DataProcessor\DataProcessor;
+use DigitalMarketingFramework\Core\DataProcessor\ValueSource\FieldCollectorValueSource;
+use DigitalMarketingFramework\Core\DataProcessor\ValueSource\FieldValueSource;
 use DigitalMarketingFramework\Core\Service\DataProcessorInterface;
 use DigitalMarketingFramework\Distributor\Request\Route\RequestRoute;
 
@@ -15,51 +18,41 @@ class PardotRoute extends RequestRoute
         'User-Agent' => self::KEYWORD_PASSTHROUGH,
     ];
 
-    public static function getDefaultConfiguration(): array
+    protected static function getDefaultFields(): array
     {
-        $config = parent::getDefaultConfiguration();
-        
-        $config[static::KEY_DATA][DataProcessorInterface::KEY_FIELDS] = [
-            'source' => ['field' => 'source'],
-    
-            'salutation' => ['field' => 'salutation'],
-            'first_name' => ['field' => 'first_name'],
-            'last_name' => ['field' => 'last_name'],
-    
-            'email' => ['field' => 'email'],
-            'phone' => ['field' => 'phone'],
-            'fax' => ['field' => 'fax'],
-    
-            'company' => ['field' => 'company'],
-            'industry' => ['field' => 'industry'],
-            'department' => ['field' => 'department'],
-            'job_title' => ['field' => 'job_title'],
-            'website' => ['field' => 'website'],
-            'annual_revenue' => ['field' => 'annual_revenue'],
-            'years_in_business' => ['field' => 'years_in_business'],
-            'employees' => ['field' => 'employees'],
-    
-            'address_one' => ['field' => 'address_one'],
-            'address_two' => ['field' => 'address_two'],
-            'zip' => ['field' => 'zip'],
-            'city' => ['field' => 'city'],
-            'state' => ['field' => 'state'],
-            'country' => ['field' => 'country'],
-            'territory' => ['field' => 'territory'],
-    
-            'is_do_not_call' => ['field' => 'is_do_not_call'],
-            'is_do_not_email' => ['field' => 'is_do_not_email'],
-            'opted_out' => ['field' => 'opted_out'],
+        return [
+            'source' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'source']),
             
-            'comments' => [
-                'fieldCollector' => [
-                    'exclude' => '',
-                    'ignoreIfEmpty' => true,
-                    'unprocessedOnly' => true,
-                ],
-            ],
-        ];
+            'salutation' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'salutation']),
+            'first_name' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'first_name']),
+            'last_name' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'last_name']),
 
-        return $config;
+            'email' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'email']),
+            'phone' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'phone']),
+            'fax' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'fax']),
+
+            'company' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'company']),
+            'industry' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'industry']),
+            'department' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'department']),
+            'job_title' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'job_title']),
+            'website' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'website']),
+            'annual_revenue' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'annual_revenue']),
+            'years_in_business' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'years_in_business']),
+            'employees' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'employees']),
+
+            'address_one' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'address_one']),
+            'address_two' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'address_two']),
+            'zip' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'zip']),
+            'city' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'city']),
+            'state' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'state']),
+            'country' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'country']),
+            'territory' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'territory']),
+
+            'is_do_not_call' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'is_do_not_call']),
+            'is_do_not_email' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'is_do_not_email']),
+            'opted_out' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'opted_out']),
+
+            'comments' => DataProcessor::getDefaultValueConfiguration(FieldCollectorValueSource::class),
+        ];
     }
 }
