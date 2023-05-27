@@ -2,10 +2,11 @@
 
 namespace DigitalMarketingFramework\Distributor\Pardot\Route;
 
+use DigitalMarketingFramework\Core\ConfigurationDocument\SchemaDocument\Schema\ContainerSchema;
+use DigitalMarketingFramework\Core\ConfigurationDocument\SchemaDocument\Schema\SchemaInterface;
 use DigitalMarketingFramework\Core\DataProcessor\DataProcessor;
 use DigitalMarketingFramework\Core\DataProcessor\ValueSource\FieldCollectorValueSource;
 use DigitalMarketingFramework\Core\DataProcessor\ValueSource\FieldValueSource;
-use DigitalMarketingFramework\Core\Service\DataProcessorInterface;
 use DigitalMarketingFramework\Distributor\Request\Route\RequestRoute;
 
 class PardotRoute extends RequestRoute
@@ -18,11 +19,20 @@ class PardotRoute extends RequestRoute
         'User-Agent' => self::KEYWORD_PASSTHROUGH,
     ];
 
+    public static function getSchema(): SchemaInterface
+    {
+        /** @var ContainerSchema $schema */
+        $schema = parent::getSchema();
+        // TODO how to set default fields if there is a custom schema involved?
+        // $schema->getProperty('')->getSchema()->setDefaultValue(static::getDefaultFields());
+        return $schema;
+    }
+
     protected static function getDefaultFields(): array
     {
         return [
             'source' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'source']),
-            
+
             'salutation' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'salutation']),
             'first_name' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'first_name']),
             'last_name' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'last_name']),
