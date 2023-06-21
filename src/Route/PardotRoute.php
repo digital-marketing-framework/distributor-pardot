@@ -12,7 +12,7 @@ use DigitalMarketingFramework\Distributor\Request\Route\RequestRoute;
 class PardotRoute extends RequestRoute
 {
     const DEFAULT_COOKIES = parent::DEFAULT_COOKIES + [
-        'visitor_id[0-9]+(-hash)?',
+        'visitor_id[0-9]+(-hash)?' => self::KEYWORD_PASSTHROUGH,
     ];
 
     const DEFAULT_HEADERS = parent::DEFAULT_HEADERS + [
