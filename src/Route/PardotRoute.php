@@ -19,50 +19,41 @@ class PardotRoute extends RequestRoute
         'User-Agent' => self::KEYWORD_PASSTHROUGH,
     ];
 
-    public static function getSchema(): SchemaInterface
-    {
-        /** @var ContainerSchema $schema */
-        $schema = parent::getSchema();
-        // TODO how to set default fields if there is a custom schema involved?
-        // $schema->getProperty('')->getSchema()->setDefaultValue(static::getDefaultFields());
-        return $schema;
-    }
-
     protected static function getDefaultFields(): array
     {
         return [
-            'source' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'source']),
+            'source' => DataProcessor::valueSchemaDefaultValueField('source'),
 
-            'salutation' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'salutation']),
-            'first_name' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'first_name']),
-            'last_name' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'last_name']),
+            'salutation' => DataProcessor::valueSchemaDefaultValueField('salutation'),
+            'first_name' => DataProcessor::valueSchemaDefaultValueField('first_name'),
+            'last_name' => DataProcessor::valueSchemaDefaultValueField('last_name'),
 
-            'email' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'email']),
-            'phone' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'phone']),
-            'fax' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'fax']),
+            'email' => DataProcessor::valueSchemaDefaultValueField('email'),
+            'phone' => DataProcessor::valueSchemaDefaultValueField('phone'),
+            'fax' => DataProcessor::valueSchemaDefaultValueField('fax'),
 
-            'company' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'company']),
-            'industry' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'industry']),
-            'department' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'department']),
-            'job_title' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'job_title']),
-            'website' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'website']),
-            'annual_revenue' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'annual_revenue']),
-            'years_in_business' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'years_in_business']),
-            'employees' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'employees']),
+            'company' => DataProcessor::valueSchemaDefaultValueField('company'),
+            'industry' => DataProcessor::valueSchemaDefaultValueField('industry'),
+            'department' => DataProcessor::valueSchemaDefaultValueField('department'),
+            'job_title' => DataProcessor::valueSchemaDefaultValueField('job_title'),
+            'website' => DataProcessor::valueSchemaDefaultValueField('website'),
+            'annual_revenue' => DataProcessor::valueSchemaDefaultValueField('annual_revenue'),
+            'years_in_business' => DataProcessor::valueSchemaDefaultValueField('years_in_business'),
+            'employees' => DataProcessor::valueSchemaDefaultValueField('employees'),
 
-            'address_one' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'address_one']),
-            'address_two' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'address_two']),
-            'zip' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'zip']),
-            'city' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'city']),
-            'state' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'state']),
-            'country' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'country']),
-            'territory' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'territory']),
+            'address_one' => DataProcessor::valueSchemaDefaultValueField('address_one'),
+            'address_two' => DataProcessor::valueSchemaDefaultValueField('address_two'),
+            'zip' => DataProcessor::valueSchemaDefaultValueField('zip'),
+            'city' => DataProcessor::valueSchemaDefaultValueField('city'),
+            'state' => DataProcessor::valueSchemaDefaultValueField('state'),
+            'country' => DataProcessor::valueSchemaDefaultValueField('country'),
+            'territory' => DataProcessor::valueSchemaDefaultValueField('territory'),
 
-            'is_do_not_call' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'is_do_not_call']),
-            'is_do_not_email' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'is_do_not_email']),
-            'opted_out' => DataProcessor::getDefaultValueConfiguration(FieldValueSource::class, null, [FieldValueSource::KEY_FIELD_NAME => 'opted_out']),
+            'is_do_not_call' => DataProcessor::valueSchemaDefaultValueField('is_do_not_call'),
+            'is_do_not_email' => DataProcessor::valueSchemaDefaultValueField('is_do_not_email'),
+            'opted_out' => DataProcessor::valueSchemaDefaultValueField('opted_out'),
 
-            'comments' => DataProcessor::getDefaultValueConfiguration(FieldCollectorValueSource::class),
+            'comments' => DataProcessor::valueSchemaDefaultValueFieldCollector(),
         ];
     }
 }
