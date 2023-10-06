@@ -2,20 +2,16 @@
 
 namespace DigitalMarketingFramework\Distributor\Pardot\Route;
 
-use DigitalMarketingFramework\Core\ConfigurationDocument\SchemaDocument\Schema\ContainerSchema;
-use DigitalMarketingFramework\Core\ConfigurationDocument\SchemaDocument\Schema\SchemaInterface;
 use DigitalMarketingFramework\Core\DataProcessor\DataProcessor;
-use DigitalMarketingFramework\Core\DataProcessor\ValueSource\FieldCollectorValueSource;
-use DigitalMarketingFramework\Core\DataProcessor\ValueSource\FieldValueSource;
 use DigitalMarketingFramework\Distributor\Request\Route\RequestRoute;
 
 class PardotRoute extends RequestRoute
 {
-    const DEFAULT_COOKIES = parent::DEFAULT_COOKIES + [
+    protected const DEFAULT_COOKIES = parent::DEFAULT_COOKIES + [
         'visitor_id[0-9]+(-hash)?' => self::KEYWORD_PASSTHROUGH,
     ];
 
-    const DEFAULT_HEADERS = parent::DEFAULT_HEADERS + [
+    protected const DEFAULT_HEADERS = parent::DEFAULT_HEADERS + [
         'User-Agent' => self::KEYWORD_PASSTHROUGH,
     ];
 
