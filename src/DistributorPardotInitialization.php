@@ -9,7 +9,7 @@ use DigitalMarketingFramework\Distributor\Pardot\Route\PardotRoute;
 
 class DistributorPardotInitialization extends Initialization
 {
-    const PLUGINS = [
+    protected const PLUGINS = [
         RegistryDomain::DISTRIBUTOR => [
             RouteInterface::class => [
                 PardotRoute::class,
