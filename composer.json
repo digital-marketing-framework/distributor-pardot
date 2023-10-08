@@ -1,14 +1,15 @@
 {
     "name": "digital-marketing-framework/distributor-pardot",
-    "description": "FormRelay route for Pardot form handlers.",
+    "description": "Digital Marketing Framework - Distributor - Pardot",
     "license": "GPL-2.0-or-later",
     "type": "library",
     "keywords": [
+        "marketing",
         "framework",
-        "form",
         "data",
-        "submission",
         "relay",
+        "distribution",
+        "distributor",
         "pardot",
         "formhandler"
     ],
