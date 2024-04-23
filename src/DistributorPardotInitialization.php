@@ -4,15 +4,15 @@ namespace DigitalMarketingFramework\Distributor\Pardot;
 
 use DigitalMarketingFramework\Core\Initialization;
 use DigitalMarketingFramework\Core\Registry\RegistryDomain;
-use DigitalMarketingFramework\Distributor\Core\Route\RouteInterface;
-use DigitalMarketingFramework\Distributor\Pardot\Route\PardotRoute;
+use DigitalMarketingFramework\Distributor\Core\Route\OutboundRouteInterface;
+use DigitalMarketingFramework\Distributor\Pardot\Route\PardotOutboundRoute;
 
 class DistributorPardotInitialization extends Initialization
 {
     protected const PLUGINS = [
         RegistryDomain::DISTRIBUTOR => [
-            RouteInterface::class => [
-                PardotRoute::class,
+            OutboundRouteInterface::class => [
+                PardotOutboundRoute::class,
             ],
         ],
     ];
