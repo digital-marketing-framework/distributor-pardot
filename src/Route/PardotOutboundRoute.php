@@ -68,7 +68,7 @@ class PardotOutboundRoute extends RequestOutboundRoute
             new FieldDefinition('is_do_not_email', type: FieldDefinition::TYPE_STRING, label: 'Is do not email', multiValue: false, required: false),
             new FieldDefinition('opted_out', type: FieldDefinition::TYPE_STRING, label: 'Opted out', multiValue: false, required: false),
 
-            new FieldDefinition('comments', type: FieldDefinition::TYPE_STRING, label: 'Comments', multiValue: false, required: false, dedicated: FieldDefinition::DEDICATED_COLLECTOR_FIELD),
+            new FieldDefinition('comments', type: FieldDefinition::TYPE_STRING, label: 'Comments', multiValue: false, dedicated: FieldDefinition::DEDICATED_COLLECTOR_FIELD, required: false),
         ];
     }
 }
