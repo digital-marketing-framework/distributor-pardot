@@ -4,6 +4,8 @@ namespace DigitalMarketingFramework\Distributor\Pardot\Route;
 
 use DigitalMarketingFramework\Core\Integration\IntegrationInfo;
 use DigitalMarketingFramework\Core\SchemaDocument\FieldDefinition\FieldDefinition;
+use DigitalMarketingFramework\Core\SchemaDocument\Schema\ContainerSchema;
+use DigitalMarketingFramework\Core\SchemaDocument\Schema\SchemaInterface;
 use DigitalMarketingFramework\Distributor\Request\Route\RequestOutboundRoute;
 
 class PardotOutboundRoute extends RequestOutboundRoute
@@ -26,7 +28,9 @@ class PardotOutboundRoute extends RequestOutboundRoute
         return new IntegrationInfo('pardot');
     }
 
+    protected function getMethod(): string
     {
+        return 'POST';
     }
 
     public static function getDefaultFields(): array
@@ -63,5 +67,15 @@ class PardotOutboundRoute extends RequestOutboundRoute
 
             new FieldDefinition('comments', type: FieldDefinition::TYPE_STRING, label: 'Comments', multiValue: false, dedicated: FieldDefinition::DEDICATED_COLLECTOR_FIELD, required: false),
         ];
+    }
+
+    public static function getSchema(): SchemaInterface
+    {
+        /** @var ContainerSchema */
+        $schema = parent::getSchema();
+
+        $schema->removeProperty(static::KEY_METHOD);
+
+        return $schema;
     }
 }
