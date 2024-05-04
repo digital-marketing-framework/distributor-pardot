@@ -2,8 +2,8 @@
 
 namespace DigitalMarketingFramework\Distributor\Pardot\Route;
 
+use DigitalMarketingFramework\Core\Integration\IntegrationInfo;
 use DigitalMarketingFramework\Core\SchemaDocument\FieldDefinition\FieldDefinition;
-use DigitalMarketingFramework\Core\DataProcessor\DataProcessor;
 use DigitalMarketingFramework\Distributor\Request\Route\RequestOutboundRoute;
 
 class PardotOutboundRoute extends RequestOutboundRoute
@@ -21,19 +21,12 @@ class PardotOutboundRoute extends RequestOutboundRoute
         return 'Pardot Form Handler';
     }
 
-    public static function getIntegrationName(): string
+    public static function getDefaultIntegrationInfo(): IntegrationInfo
     {
-        return 'pardot';
+        return new IntegrationInfo('pardot');
     }
 
-    public static function getIntegrationLabel(): ?string
     {
-        return null;
-    }
-
-    public static function getOutboundRouteListLabel(): ?string
-    {
-        return null;
     }
 
     public static function getDefaultFields(): array
