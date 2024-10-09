@@ -11,6 +11,8 @@ use DigitalMarketingFramework\Distributor\Request\Route\RequestOutboundRoute;
 
 class PardotOutboundRoute extends RequestOutboundRoute
 {
+    // TODO this ignore cookie is set from an outside framework
+    //      it should be replaced later by the identifier's reset functionality
     protected const COOKIE_IGNORE_VISITOR = 'visitor_id_ignore';
 
     protected const REGEXP_COOKIE_VISITOR = 'visitor_id[0-9]+(-hash)?';
