@@ -4,19 +4,22 @@ namespace DigitalMarketingFramework\Distributor\Pardot\Route;
 
 use DigitalMarketingFramework\Core\Integration\IntegrationInfo;
 use DigitalMarketingFramework\Core\SchemaDocument\FieldDefinition\FieldDefinition;
+use DigitalMarketingFramework\Core\SchemaDocument\Schema\BooleanSchema;
 use DigitalMarketingFramework\Core\SchemaDocument\Schema\ContainerSchema;
 use DigitalMarketingFramework\Core\SchemaDocument\Schema\SchemaInterface;
 use DigitalMarketingFramework\Distributor\Request\Route\RequestOutboundRoute;
 
 class PardotOutboundRoute extends RequestOutboundRoute
 {
-    protected const DEFAULT_COOKIES = parent::DEFAULT_COOKIES + [
-        'visitor_id[0-9]+(-hash)?' => self::KEYWORD_PASSTHROUGH,
-    ];
+    // TODO this ignore cookie is set from an outside framework
+    //      it should be replaced later by the identifier's reset functionality
+    protected const COOKIE_IGNORE_VISITOR = 'visitor_id_ignore';
 
-    protected const DEFAULT_HEADERS = parent::DEFAULT_HEADERS + [
-        'User-Agent' => self::KEYWORD_PASSTHROUGH,
-    ];
+    protected const REGEXP_COOKIE_VISITOR = 'visitor_id[0-9]+(-hash)?';
+
+    protected const KEY_KIOSK_MODE = 'kioskMode';
+
+    protected const DEFAULT_KIOSK_MODE = false;
 
     public static function getLabel(): ?string
     {
@@ -31,6 +34,31 @@ class PardotOutboundRoute extends RequestOutboundRoute
     protected function getMethod(): string
     {
         return 'POST';
+    }
+
+    protected function getCookieConfig(): array
+    {
+        if ($this->getConfig(static::KEY_KIOSK_MODE)) {
+            return [];
+        }
+
+        if ($this->context->getCookie(static::COOKIE_IGNORE_VISITOR)) {
+            return [
+                static::COOKIE_IGNORE_VISITOR => static::KEYWORD_PASSTHROUGH,
+            ];
+        }
+
+        return [
+            static::COOKIE_IGNORE_VISITOR => static::KEYWORD_PASSTHROUGH,
+            static::REGEXP_COOKIE_VISITOR => static::KEYWORD_PASSTHROUGH,
+        ];
+    }
+
+    protected function getHeaderConfig(): array
+    {
+        return [
+            'User-Agent' => static::KEYWORD_PASSTHROUGH,
+        ];
     }
 
     public static function getDefaultFields(): array
@@ -75,6 +103,12 @@ class PardotOutboundRoute extends RequestOutboundRoute
         $schema = parent::getSchema();
 
         $schema->removeProperty(static::KEY_METHOD);
+        $schema->removeProperty(static::KEY_COOKIES);
+        $schema->removeProperty(static::KEY_HEADERS);
+
+        $kioskModeSchema = new BooleanSchema(static::DEFAULT_KIOSK_MODE);
+        $kioskModeSchema->getRenderingDefinition()->setHint('No (tracking) cookies will be forwarded to the Pardot form handler.');
+        $schema->addProperty(static::KEY_KIOSK_MODE, $kioskModeSchema);
 
         return $schema;
     }
