@@ -38,11 +38,11 @@ class PardotOutboundRoute extends RequestOutboundRoute
 
     protected function getCookieConfig(): array
     {
-        if ($this->getConfig(static::KEY_KIOSK_MODE)) {
+        if ($this->getBoolConfig(static::KEY_KIOSK_MODE)) {
             return [];
         }
 
-        if ($this->context->getCookie(static::COOKIE_IGNORE_VISITOR)) {
+        if ($this->context->getCookie(static::COOKIE_IGNORE_VISITOR) !== null) {
             return [
                 static::COOKIE_IGNORE_VISITOR => static::KEYWORD_PASSTHROUGH,
             ];
