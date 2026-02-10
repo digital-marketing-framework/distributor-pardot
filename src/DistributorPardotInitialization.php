@@ -5,6 +5,7 @@ namespace DigitalMarketingFramework\Distributor\Pardot;
 use DigitalMarketingFramework\Core\Initialization;
 use DigitalMarketingFramework\Core\Registry\RegistryDomain;
 use DigitalMarketingFramework\Distributor\Core\Route\OutboundRouteInterface;
+use DigitalMarketingFramework\Distributor\Pardot\ConfigurationDocument\Migration\DynamicUrlMigration;
 use DigitalMarketingFramework\Distributor\Pardot\Route\PardotOutboundRoute;
 
 class DistributorPardotInitialization extends Initialization
@@ -17,10 +18,12 @@ class DistributorPardotInitialization extends Initialization
         ],
     ];
 
-    protected const SCHEMA_MIGRATIONS = [];
+    protected const SCHEMA_MIGRATIONS = [
+        DynamicUrlMigration::class,
+    ];
 
     public function __construct(string $packageAlias = '')
     {
-        parent::__construct('distributor-pardot', '1.0.0', $packageAlias);
+        parent::__construct('distributor-pardot', '1.0.1', $packageAlias);
     }
 }
