@@ -29,6 +29,9 @@
     "require-dev": {
         "mediatis/coding-standards": "^2.0"
     },
+    "conflict": {
+        "digital-marketing-framework/typo3-distributor-pardot": "<4.0"
+    },
     "autoload": {
         "psr-4": {
             "DigitalMarketingFramework\\Distributor\\Pardot\\": "src/"
